@@ -10,7 +10,23 @@ import UIKit
 class MemoTableViewController: UITableViewController {
 
     var memos = ["シャケ", "おかか", "梅"]
-        
+    
+//    saveボタンが押された時のメソッド(渡ってきたメモをListに追加する)
+//    @IBAction = storyboard上で発生したイベントを関連づけるときに使用する
+    @IBAction func unwindToMemoList(sender: UIStoryboardSegue)
+        {
+        guard let sourceVC = sender.source as? MemoViewController,
+              let memo = sourceVC.memo else
+            {
+            return
+        }
+//        メモをListに追加
+        self.memos.append(memo)
+//        tableVIewを再読み込み
+        self.tableView.reloadData()
+//        その後、saveボタンをexitに接続する(巻き戻る処理をここで設定)
+    }
+    
 //        Mapの場合(styleでsubtitleの場合)
 //        ["title": "t1", "detail": "d1"],
 //        ["title": "t2", "detail": "d2"],
@@ -22,7 +38,7 @@ class MemoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -66,7 +82,7 @@ class MemoTableViewController: UITableViewController {
     }
     */
 
-    /*
+//    スワイプして削除ボタンが表示されるメソッド
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -76,7 +92,6 @@ class MemoTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.
