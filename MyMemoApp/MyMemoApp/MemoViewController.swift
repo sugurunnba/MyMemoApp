@@ -23,6 +23,7 @@ class MemoViewController: UIViewController {
 //    textFieldに文字が入ったとき、Saveボタンが押せるようにする
 //    右クリック→EditingChangedを引っ張ってくる
     @IBAction func memoTextField(_ sender: Any) {
+//        ??はnilガード。左辺がnilの場合、右辺を代入する
         let memo = self.memoTextField.text ?? ""
         self.saveButton.isEnabled = !memo.isEmpty
     }
@@ -30,6 +31,7 @@ class MemoViewController: UIViewController {
 //    キャンセルボタンを設定
 //    Cancelボタンをcontrol +ドラックでメソッドを設定
     @IBAction func cancel(_ sender: Any) {
+//        completion->終わった後の処理
         self.dismiss(animated: true, completion: nil)
     }
     //    saveボタンが押された時、senderに情報が入ってくる。

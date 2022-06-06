@@ -17,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D1852EA284E2B6300E6E38E /* MyMemoApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MyMemoApp copy-Info.plist"; path = "/Users/runban/Desktop/dotInstall/MyMemoApp/MyMemoApp copy-Info.plist"; sourceTree = "<absolute>"; };
+		3D1852FA284E2B9100E6E38E /* MyMemoApp copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MyMemoApp copy2-Info.plist"; path = "/Users/runban/Desktop/dotInstall/MyMemoApp/MyMemoApp copy2-Info.plist"; sourceTree = "<absolute>"; };
 		3DC6001228464A4A00933D6C /* MyMemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC6001528464A4A00933D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DC6001728464A4A00933D6C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +46,8 @@
 			children = (
 				3DC6001428464A4A00933D6C /* MyMemoApp */,
 				3DC6001328464A4A00933D6C /* Products */,
+				3D1852EA284E2B6300E6E38E /* MyMemoApp copy-Info.plist */,
+				3D1852FA284E2B9100E6E38E /* MyMemoApp copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
