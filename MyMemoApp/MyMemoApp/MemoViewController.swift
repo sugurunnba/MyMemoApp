@@ -19,6 +19,10 @@ class MemoViewController: UIViewController {
         super.viewDidLoad()
 //        画面起動時、セーブボタンを押せないようにする
         self.saveButton.isEnabled = false
+        
+        if let memo = self.memo {
+            self.memoTextField.text = memo
+        }
     }
 //    textFieldに文字が入ったとき、Saveボタンが押せるようにする
 //    右クリック→EditingChangedを引っ張ってくる

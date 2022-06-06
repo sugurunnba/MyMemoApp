@@ -84,13 +84,12 @@ class MemoTableViewController: UITableViewController {
 
 //    スワイプして削除ボタンが表示されるメソッド
     // Override to support editing the table view.
+//    indexPathにスワイプされた行のインデックスが入る
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            self.memos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
     /*
@@ -108,14 +107,22 @@ class MemoTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    編集するために、セルを押した時の処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        guard let identifier = segue.identifier else {
+            return
+        }
+        if identifier == "editMemo" {
+//            遷移先のビューコントローラーを取得
+            let memoVC = segue.destination as! MemoViewController
+//            memoVCのmemoプロパティに、選択されている行のセルを指定する
+            memoVC.memo = self.memos[(self.tableView.indexPathForSelectedRow?.row)!]
+//            ここから飛ばされた値は、MemoViewControllerのviewDidLoadで取得できる
+        }
     }
-    */
 
 }
