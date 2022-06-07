@@ -8,8 +8,18 @@
 import UIKit
 
 class MemoTableViewController: UITableViewController {
+    
+//    UserDefaults
+//    userDefaulesのインスタンス取得
+//    「UserDefaults」とは？
+//    ユーザーのデフォルトデータベースへのインターフェイスです。
+//    アプリの起動時にキーと値のペアを永続的に保存します。
+//
+//    一言でいうと「簡単に使えるキーバリュー型のDB」です。
+    let userDefaults = UserDefaults.standard
 
-    var memos = ["シャケ", "おかか", "梅"]
+//    var memos = ["シャケ", "おかか", "梅"]
+    var memos = [String]()
     
 //    saveボタンが押された時のメソッド(渡ってきたメモをListに追加する)
 //    @IBAction = storyboard上で発生したイベントを関連づけるときに使用する
@@ -20,8 +30,15 @@ class MemoTableViewController: UITableViewController {
             {
             return
         }
-//        メモをListに追加
-        self.memos.append(memo)
+//        編集されるセルが選択されている場合の分岐、つまり編集して保存する時にはここが走る
+        if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
+            self.memos[selectedIndexPath.row] = memo
+        } else {
+//          　メモをListに追加
+            self.memos.append(memo)
+        }
+//        userDefaultsに登録
+        self.userDefaults.set(self.memos, forKey: "memos")
 //        tableVIewを再読み込み
         self.tableView.reloadData()
 //        その後、saveボタンをexitに接続する(巻き戻る処理をここで設定)
@@ -39,11 +56,13 @@ class MemoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        if self.userDefaults.object(forKey:  "memos") != nil {
+//            stringArray ->　キーにある配列を返す
+            self.memos = self.userDefaults.stringArray(forKey: "memos")!
+        } else {
+            self.memos = ["memo1", "memo2", "memo3"]
+        }
     }
 
     // MARK: - Table view data source
@@ -88,6 +107,8 @@ class MemoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.memos.remove(at: indexPath.row)
+//            userDefaultsに登録
+            self.userDefaults.set(self.memos, forKey: "memos")
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
